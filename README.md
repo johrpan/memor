@@ -2,6 +2,12 @@
 
 A simple reminder app.
 
+## Introduction
+
+Memor is an Android app for getting reminders at a specified time via a
+notification. It was developed with the goal to be as simple and elegant as
+possible.
+
 ## Hacking
 
 Memor is developed in [Dart](https://dart.dev) using the
