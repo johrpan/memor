@@ -39,6 +39,8 @@ class HomeScreen extends StatelessWidget {
           : StreamBuilder<List<Memo>>(
               stream: backend.memos,
               builder: (context, snapshot) {
+                final scaffold = Scaffold.of(context);
+
                 if (snapshot.hasData) {
                   final memos = snapshot.data;
                   final now = DateTime.now();
@@ -86,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           onDismissed: (_) async {
                             await backend.deleteMemo(index);
-                            Scaffold.of(context).showSnackBar(
+                            scaffold.showSnackBar(
                               SnackBar(
                                 content: Text(l10n.deleted(memo.text)),
                                 action: SnackBarAction(
