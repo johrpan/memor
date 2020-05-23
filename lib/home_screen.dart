@@ -126,11 +126,27 @@ class HomeScreen extends StatelessWidget {
                     );
                   } else {
                     return Center(
-                      child: Text(
-                        l10n.noReminders,
-                        style: Theme.of(context).textTheme.headline6.copyWith(
-                              color: Colors.grey,
-                            ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.notifications_off,
+                            color: Colors.grey[300],
+                            size: 128.0,
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          Text(
+                            l10n.noReminders,
+                            style: Theme.of(context).textTheme.headline6.copyWith(
+                                  color: Colors.grey[300],
+                                ),
+                          ),
+                          SizedBox(
+                            height: 64.0,
+                          ),
+                        ],
                       ),
                     );
                   }
