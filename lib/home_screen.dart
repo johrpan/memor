@@ -41,6 +41,7 @@ class HomeScreen extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final memos = snapshot.data;
+                  final now = DateTime.now();
 
                   if (memos.isNotEmpty) {
                     return ListView.builder(
@@ -48,6 +49,7 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final memo = memos[index];
                         final scheduled = memo.scheduled;
+                        final isPast = scheduled.compareTo(now) <= 0;
                         final dateString = scheduled.dateString(context);
                         final timeOfDayString =
                             scheduled.timeOfDay.format(context);
@@ -69,7 +71,11 @@ class HomeScreen extends StatelessWidget {
                           child: ListTile(
                             title: Text(memo.text),
                             subtitle: Text(
-                                l10n.scheduled(dateString, timeOfDayString)),
+                              l10n.scheduled(dateString, timeOfDayString),
+                              style: TextStyle(
+                                color: isPast ? Colors.red : null,
+                              ),
+                            ),
                             onTap: () async {
                               final result =
                                   await _showMemoEditor(context, memo);
