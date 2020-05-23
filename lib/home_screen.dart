@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'backend.dart';
 import 'date_utils.dart';
+import 'localizations.dart';
 import 'memo.dart';
 import 'memo_editor.dart';
 
@@ -25,10 +26,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backend = MemorBackend.of(context);
+    final l10n = MemorLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Memor'),
+        title: Text(l10n.title),
       ),
       body: backend.loading
           ? Center(
@@ -46,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final memo = memos[index];
                         final scheduled = memo.scheduled;
-                        final dateString = scheduled.dateString;
+                        final dateString = scheduled.dateString(context);
                         final timeOfDayString =
                             scheduled.timeOfDay.format(context);
 
@@ -66,7 +68,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                           child: ListTile(
                             title: Text(memo.text),
-                            subtitle: Text('$dateString at $timeOfDayString'),
+                            subtitle: Text(
+                                l10n.scheduled(dateString, timeOfDayString)),
                             onTap: () async {
                               final result =
                                   await _showMemoEditor(context, memo);
@@ -79,9 +82,9 @@ class HomeScreen extends StatelessWidget {
                             await backend.deleteMemo(index);
                             Scaffold.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Deleted "${memo.text}"'),
+                                content: Text(l10n.deleted(memo.text)),
                                 action: SnackBarAction(
-                                  label: 'UNDO',
+                                  label: l10n.undo,
                                   onPressed: () async {
                                     await backend.addMemo(memo);
                                   },
@@ -95,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                   } else {
                     return Center(
                       child: Text(
-                        'No reminders scheduled',
+                        l10n.noReminders,
                         style: Theme.of(context).textTheme.headline6.copyWith(
                               color: Colors.grey,
                             ),

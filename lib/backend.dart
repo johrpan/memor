@@ -8,6 +8,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart' as pp;
 import 'package:rxdart/rxdart.dart';
 
+import 'localizations.dart';
 import 'memo.dart';
 
 /// Widget for managing resources and state for Memor.
@@ -40,15 +41,11 @@ class MemorBackendState extends State<MemorBackend> {
   final memos = BehaviorSubject.seeded(<Memo>[]);
 
   /// Whether the backend is currently loading.
-  /// 
+  ///
   /// If this is true, the UI should not call backend methods.
   bool loading = true;
 
   static const _fileName = 'memos.json';
-
-  static const _notificationDetails = NotificationDetails(
-      AndroidNotificationDetails('memor', 'Memor', 'Memor reminders'),
-      IOSNotificationDetails());
 
   final _notifications = FlutterLocalNotificationsPlugin();
   File _file;
@@ -133,12 +130,20 @@ class MemorBackendState extends State<MemorBackend> {
 
   /// Schedule a notification for a memo.
   Future<void> _schedule(Memo memo) async {
+    final l10n = MemorLocalizations.of(context);
     _notifications.schedule(
       memo.id,
-      'Reminder',
+      l10n.reminder,
       memo.text,
       memo.scheduled,
-      _notificationDetails,
+      NotificationDetails(
+        AndroidNotificationDetails(
+          'memor',
+          'Memor',
+          l10n.notificationDescription,
+        ),
+        IOSNotificationDetails(),
+      ),
       androidAllowWhileIdle: true,
     );
   }

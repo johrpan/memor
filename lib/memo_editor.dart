@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'localizations.dart';
 import 'memo.dart';
 import 'date_utils.dart';
 
@@ -46,15 +47,16 @@ class _MemoEditorState extends State<MemoEditor> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = MemorLocalizations.of(context);
     final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.memo != null ? 'Edit memo' : 'Add memo'),
+        title: Text(widget.memo != null ? l10n.editTitle : l10n.addTitle),
         actions: <Widget>[
           FlatButton(
             child: Text(
-              widget.memo != null ? 'SAVE' : 'CREATE',
+              widget.memo != null ? l10n.save : l10n.create,
               style: theme.textTheme.button.copyWith(
                 color: theme.colorScheme.onPrimary,
               ),
@@ -80,13 +82,13 @@ class _MemoEditorState extends State<MemoEditor> {
               maxLines: null,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Memo',
+                labelText: l10n.memo,
               ),
             ),
           ),
           ListTile(
-            title: Text('Date'),
-            subtitle: Text(_date.dateString),
+            title: Text(l10n.date),
+            subtitle: Text(_date.dateString(context)),
             onTap: () async {
               final result = await showDatePicker(
                 context: context,
@@ -103,7 +105,7 @@ class _MemoEditorState extends State<MemoEditor> {
             },
           ),
           ListTile(
-            title: Text('Time'),
+            title: Text(l10n.time),
             subtitle: Text(_time.format(context)),
             onTap: () async {
               final result = await showTimePicker(

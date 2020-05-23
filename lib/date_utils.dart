@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'localizations.dart';
+
 /// Utilities for handling DateTime objects.
 extension DateUtils on DateTime {
   /// Create a new instance with identical values.
@@ -21,18 +23,20 @@ extension DateUtils on DateTime {
         time.minute,
       );
 
-  /// Get a string representation of the represented day suitable for display.
-  String get dateString {
+  /// Get a localized string representation of the represented day suitable for
+  /// display.
+  String dateString(BuildContext context) {
+    final l10n = MemorLocalizations.of(context);
     final now = DateTime.now();
     if (this.year == now.year && this.month == now.month) {
       if (this.day == now.day) {
-        return 'Today';
+        return l10n.today;
       } else if (this.day == now.day + 1) {
-        return 'Tomorrow';
+        return l10n.tomorrow;
       }
     }
 
-    final format = DateFormat.yMd();
+    final format = DateFormat.yMd(l10n.languageCode);
     return format.format(this);
   }
 
