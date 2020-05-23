@@ -1,6 +1,6 @@
 name: memor
 description: A simple reminder app.
-version: 1.0.2
+version: 1.0.2+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
