@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'about_screen.dart';
 import 'backend.dart';
 import 'date_utils.dart';
 import 'localizations.dart';
@@ -31,6 +32,26 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.title),
+        actions: <Widget>[
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 0,
+                child: Text(l10n.about),
+              ),
+            ],
+            onSelected: (value) {
+              if (value == 0) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutScreen(),
+                  ),
+                );
+              }
+            },
+          ),
+        ],
       ),
       body: backend.loading
           ? Center(

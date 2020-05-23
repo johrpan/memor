@@ -23,6 +23,41 @@ class MemorLocalizations {
   String get noReminders =>
       de ? 'Keine Erinnerungen eingerichtet' : 'No reminders scheduled';
 
+  // About screen
+
+  String get about => de ? 'Über Memor' : 'About Memor';
+  String get introTitle => de ? 'Einführung' : 'Introduction';
+  String get intro => de
+      ? 'Memor ist eine Anwendung, die Sie zu bestimmten Zeiten mit einer '
+          'Benachrichtigung an etwas erinnern kann. Sie wurde mit dem Ziel '
+          'entwickelt möglichst einfach, schlicht und elegant zu sein.'
+      : 'Memor is an app for getting reminders at a specified time via a '
+          'notification. It was developed with the goal to be as simple and '
+          'elegant as possible.';
+  String get licenseTitle => de ? 'Lizenz' : 'License';
+  String get license1 => '© 2020 Elias Projahn\n\n'
+      'This program is free software: you can redistribute it and/or modify it '
+      'under the terms of the GNU General Public License as published by the '
+      'Free Software Foundation, either version 3 of the License, or (at your '
+      'option) any later version.\n\nThis program is distributed in the hope '
+      'that it will be useful, but WITHOUT ANY WARRANTY; without even the '
+      'implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR '
+      'PURPOSE. See the ';
+  String get license2 => 'GNU General Public License';
+  String get license3 => ' for more details.';
+  String get contactTitle => de ? 'Kontakt' : 'Contact';
+  String get contact1 => de
+      ? 'Für Fragen, Fehlermeldungen, Anregungen etc. können Sie mich gerne '
+      : 'Feel free to contact me ';
+  String get contact2 => de ? 'per E-Mail' : 'via E-mail';
+  String get contact3 => de
+      ? ' kontaktieren. Memor ist freie Software. Sie können bei '
+      : ' for questions, bug reports, ideas etc. Memor is free software. You '
+          'can study the source code and contribute on ';
+  String get contact4 => 'GitHub';
+  String get contact5 =>
+      de ? ' den Quellcode studieren und zur Entwicklung beitragen.' : '.';
+
   // Memo editor
 
   String get editTitle => de ? 'Memo bearbeiten' : 'Edit memo';

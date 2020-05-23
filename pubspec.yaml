@@ -16,6 +16,7 @@ dependencies:
   path:
   path_provider:
   rxdart:
+  url_launcher:
 
 flutter:
   uses-material-design: true
