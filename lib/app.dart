@@ -33,6 +33,7 @@ class MemorApp extends StatelessWidget {
         ),
         fontFamily: 'Libertinus Sans',
       ),
+      title: 'Memor',
       builder: (context, child) => MemorBackend(child: child),
       home: HomeScreen(),
     );
